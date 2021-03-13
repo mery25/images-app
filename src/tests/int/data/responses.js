@@ -177,3 +177,23 @@ export const SUCCESFUL_RESPONSE_WITH_LIMIT_PARAM = {
   status: 200,
   statusText: "",
 };
+export const SUCCESFUL_RESPONSE = {
+  data: [
+    {
+      albumId: 1,
+      id: 21,
+      thumbnailUrl: "https://via.placeholder.com/150/deserunt",
+      title: "duis id aliquip adipisicing laboris mollit Lorem",
+      url: "https://via.placeholder.com/600/laborum",
+    },
+    {
+      albumId: 1,
+      id: 22,
+      thumbnailUrl: "https://via.placeholder.com/150/laborum",
+      title: "tempor exercitation anim veniam anim ea excepteur",
+      url: "https://via.placeholder.com/600/reprehenderit",
+    }
+  ],
+  status: 200,
+  statusText: "",
+};

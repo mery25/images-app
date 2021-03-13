@@ -3,7 +3,8 @@ import mockAxios from "axios"
 import { 
     SUCCESFUL_RESPONSE_WITH_DEFAULT_PARAMS,
     SUCCESFUL_RESPONSE_WITH_PAGE_PARAM,
-    SUCCESFUL_RESPONSE_WITH_LIMIT_PARAM
+    SUCCESFUL_RESPONSE_WITH_LIMIT_PARAM,
+    SUCCESFUL_RESPONSE
 } from "./data/responses"
 jest.mock("axios")
 
@@ -43,6 +44,30 @@ describe('retrieve images', () => {
 
         expect(mockFn).toBeCalledTimes(1)
         expect(mockFn).toBeCalledWith(URL_WITH_LIMIT_PARAM)
+
+    })
+
+    it('should retrieve images from api', async () => {
+        mockAxios.get.mockResolvedValue(SUCCESFUL_RESPONSE)
+
+        const LIMIT = 2;
+        const PAGE = 3;
+        const images = await getImages(PAGE, LIMIT)
+        expect(images).not.toBeNull()
+        expect(images.length).toBe(LIMIT)
+        expect(images[0]).toBe(expect.objectContaining(
+        {
+            alt: "duis id aliquip adipisicing laboris mollit Lorem",
+            src: "https://via.placeholder.com/600/laborum"
+        }))
+        expect(images[1]).toBe(expect.objectContaining(
+        {
+            alt: "tempor exercitation anim veniam anim ea excepteur",
+            src: "https://via.placeholder.com/600/reprehenderit",
+        }))
+
+        const lastImage = images[images.length - 1];
+        expect(lastImage.id).toBe()
 
     })
 
