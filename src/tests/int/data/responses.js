@@ -74,6 +74,7 @@ export const SUCCESFUL_RESPONSE_WITH_DEFAULT_PARAMS = {
   status: 200,
   statusText: "",
 };
+
 export const SUCCESFUL_RESPONSE_WITH_PAGE_PARAM = {
   data: [
     {
@@ -150,6 +151,7 @@ export const SUCCESFUL_RESPONSE_WITH_PAGE_PARAM = {
   status: 200,
   statusText: "",
 };
+
 export const SUCCESFUL_RESPONSE_WITH_LIMIT_PARAM = {
   data: [
     {
@@ -177,6 +179,7 @@ export const SUCCESFUL_RESPONSE_WITH_LIMIT_PARAM = {
   status: 200,
   statusText: "",
 };
+
 export const SUCCESFUL_RESPONSE = {
   data: [
     {
@@ -196,4 +199,10 @@ export const SUCCESFUL_RESPONSE = {
   ],
   status: 200,
   statusText: "",
+};
+
+export const ERROR_RESPONSE = {
+  data: [],
+  status: 404,
+  statusText: "Not Found",
 };
