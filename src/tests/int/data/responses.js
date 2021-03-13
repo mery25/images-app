@@ -150,3 +150,30 @@ export const SUCCESFUL_RESPONSE_WITH_PAGE_PARAM = {
   status: 200,
   statusText: "",
 };
+export const SUCCESFUL_RESPONSE_WITH_LIMIT_PARAM = {
+  data: [
+    {
+      albumId: 1,
+      id: 1,
+      thumbnailUrl: "https://via.placeholder.com/150/deserunt",
+      title: "duis id aliquip adipisicing laboris mollit Lorem",
+      url: "https://via.placeholder.com/600/laborum",
+    },
+    {
+      albumId: 1,
+      id: 2,
+      thumbnailUrl: "https://via.placeholder.com/150/laborum",
+      title: "tempor exercitation anim veniam anim ea excepteur",
+      url: "https://via.placeholder.com/600/reprehenderit",
+    },
+    {
+      albumId: 1,
+      id: 3,
+      thumbnailUrl: "https://via.placeholder.com/150/est",
+      title: "minim id ea ea et irure aliquip",
+      url: "https://via.placeholder.com/600/est",
+    },
+  ],
+  status: 200,
+  statusText: "",
+};
