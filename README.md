@@ -1,18 +1,25 @@
 # React Images App
 
-This is a React app to show images from API
+This is a React app to show images from API with infinite scroll
 
 ## Project Screen Shot(s)
 
-### Web
+### Desktop
 
+<img src="./docs/images/desktop-capture.png" width="70%">
+
+### Ipad 
+
+<img src="./docs/images/ipad-capture.png" width="70%">
 
 ### Mobile
 
+<img src="./docs/images/mobile-capture.png" width="70%">
 
 
 ## Demo 
 
+[Go to Demo!](https://image-viewer-mt.netlify.app/)
 
 
 ## Installation and Setup Instructions
