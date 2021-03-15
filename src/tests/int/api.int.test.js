@@ -60,11 +60,13 @@ describe('retrieve images', () => {
         expect(images.length).toBe(LIMIT)
         expect(images[0]).toStrictEqual(expect.objectContaining(
         {
+            id: 21,
             alt: "duis id aliquip adipisicing laboris mollit Lorem",
             src: "https://via.placeholder.com/600/laborum"
         }))
         expect(images[1]).toStrictEqual(expect.objectContaining(
         {
+            id: 22,
             alt: "tempor exercitation anim veniam anim ea excepteur",
             src: "https://via.placeholder.com/600/reprehenderit",
         }))
