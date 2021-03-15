@@ -14,7 +14,7 @@ This is a React app to show images from API with infinite scroll
 
 ### Mobile
 
-<img src="./docs/images/mobile-capture.png" width="70%">
+<img src="./docs/images/mobile-capture.png" width="40%">
 
 
 ## Demo 
