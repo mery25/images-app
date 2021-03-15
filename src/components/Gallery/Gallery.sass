@@ -9,8 +9,8 @@
         height: auto
         padding: .5rem
         overflow: hidden
-        width: 158px
-        flex-basis: 158px
+        /**  width: 158px **/
+        flex-basis: 155px
         flex-grow: 1
 
     &__image
@@ -20,16 +20,19 @@
         
 
     &__placeholder
-        width: 158px
-        flex-basis: 158px
+        flex-basis: 155px
         flex-grow: 1
         
+@media(min-width: 481px)
+    .gallery__wrapper
+        flex-basis: 30%
 
+@media(min-width: 768px)
+    .gallery__wrapper
+        flex-basis: 25%
 
-
-
-    /** @media(min-width: 481px)
-        .gallery__wrapper
-            flex-basis: 30% **/
-
+@media(min-width: 1201px )
+    .gallery__wrapper
+        flex-basis: 300px
+    
    
