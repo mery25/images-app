@@ -13,6 +13,14 @@ const Gallery = () => {
         if (lastPrevImage && lastPrevImage.id === lastNewImage.id) return prevImages
         return [...prevImages, ...newImages]
     }
+
+    const handleClick = (idx) => {
+        setImages(prevImatges => {
+            const newImatges = [...prevImatges]
+            newImatges.splice(idx, 1)
+            return newImatges
+        })
+    }
     
     useEffect(() => {
         console.log("useEffect " + page)
@@ -49,11 +57,11 @@ const Gallery = () => {
 
     return (
         <section className="gallery">
-            {images.map(({id, src, alt}) =>
+            {images.map(({id, src, alt}, idx) =>
                 (
-                    <div className="gallery__wrapper" key={id}>
+                    <button className="gallery__wrapper" key={id} onClick={() => handleClick(idx)}>
                         <img className="gallery__image" src={src} alt={alt}/>
-                    </div>
+                    </button>
                 ))}
             <div className="gallery__placeholder boundary"></div>
             <div className="gallery__placeholder"></div>
