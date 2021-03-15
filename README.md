@@ -19,6 +19,7 @@ This is a React app to show images from API with infinite scroll
 
 ## Demo 
 
+[Go to Demo!](https://image-viewer-mt.netlify.app/)
 
 
 ## Installation and Setup Instructions
