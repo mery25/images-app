@@ -49,8 +49,12 @@ const Gallery = () => {
 
     return (
         <section className="gallery">
-            {images.map(({src, alt}, idx) =>
-                (<div className="gallery__wrapper" key={idx}><img className="gallery__image" src={src} alt={alt}/></div>))}
+            {images.map(({id, src, alt}) =>
+                (
+                    <div className="gallery__wrapper" key={id}>
+                        <img className="gallery__image" src={src} alt={alt}/>
+                    </div>
+                ))}
             <div className="gallery__placeholder boundary"></div>
             <div className="gallery__placeholder"></div>
             <div className="gallery__placeholder"></div>
