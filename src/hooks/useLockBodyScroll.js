@@ -1,12 +1,24 @@
-import { useLayoutEffect } from 'react';
+import { useLayoutEffect, useState } from 'react';
 
-export function useLockBodyScroll() {
+export function useLockBodyScroll(initialState) {
+
+    const [ overflowStyle, setOverflowStyle] = useState(initialState)
+
+    const toggleScrollLock = () => {
+        setOverflowStyle(prevOverflowStyle => {
+            if (prevOverflowStyle === initialState) {
+                return 'hidden'
+            }
+            return initialState;
+        })
+    }
+
     useLayoutEffect(() => {
+        document.body.style.overflow = overflowStyle;
 
-        const originalStyle = windows.getComputedStyle(document.body).overflow;
+        return () => document.body.style.overflow = initialState;
 
-        document.body.style.overflow = 'hidden';
+    }, [overflowStyle])
 
-        return () => document.body.style.overflow = originalStyle;
-    }, []))
+    return toggleScrollLock;
 }
