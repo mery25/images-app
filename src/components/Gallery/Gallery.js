@@ -1,11 +1,14 @@
-import React, {useState, useEffect} from "react"
+import React, {useState, useEffect } from "react"
 import { getImages } from "../../api/api"
+import { useLockBodyScroll } from "../../hooks/useLockBodyScroll"
 import "./Gallery.sass"
 
 const Gallery = () => {
 
+    console.log("Gallery")
     const [ images, setImages] = useState([]);
     const [ page, setPage] = useState(0);
+    const toggleLockBodyScroll = useLockBodyScroll('visible');
 
     const addNewImages = (prevImages, newImages) => {
         const lastPrevImage = prevImages[prevImages.length - 1];
@@ -24,6 +27,7 @@ const Gallery = () => {
 
     useEffect(() => {
         console.log('useEffect []')
+
         let options = {
             root: null, // When null is the viewport
             rootMargin: '0px',
@@ -49,18 +53,17 @@ const Gallery = () => {
         try {
             if (page === 0) return;
             const limit = window.innerWidth <= 500 ? 8 : 15;
+            toggleLockBodyScroll();
             getImages(page, limit)
                 .then(images => {
                     if (images.length === 0) return false;
                     setImages(prevImages => addNewImages(prevImages, images))
                     return true;
-                })
+            }).then(() => toggleLockBodyScroll())
           } catch(e) {
             console.log(e)
           }
     }, [page])
-
-
 
     return (
         <section className="gallery">
