@@ -23,6 +23,7 @@
         border: none
         outline: none
         cursor: pointer
+        position: relative
 
     &__image
         border-radius: 15px
@@ -30,6 +31,12 @@
         width: 100%
         opacity: 1
         animation: fadeIn 5s ease
+
+    &__text
+        position: absolute
+        top:  20%
+        left: 20%
+        font-size: 5rem
         
     &__placeholder
         flex-basis: 155px
@@ -41,14 +48,14 @@
     
     &-enter-active
         opacity: 1
-        transition: opacity 300ms
+        transition: opacity 200ms
 
     &-exit
       opacity: 1
 
     &-exit-active 
         opacity: 0
-        transition: opacity 300ms
+        transition: opacity 200ms
 
         
 @media(min-width: 481px)

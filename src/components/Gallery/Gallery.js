@@ -1,11 +1,14 @@
-import React, {useState, useEffect} from "react"
+import React, {useState, useEffect } from "react"
 import { getImages } from "../../api/api"
+import { useLockBodyScroll } from "../../hooks/useLockBodyScroll"
 import "./Gallery.sass"
 
 const Gallery = () => {
 
+    console.log("Gallery")
     const [ images, setImages] = useState([]);
-    const [ page, setPage] = useState(1);
+    const [ page, setPage] = useState(0);
+    const toggleLockBodyScroll = useLockBodyScroll('visible');
 
     const addNewImages = (prevImages, newImages) => {
         const lastPrevImage = prevImages[prevImages.length - 1];
@@ -21,32 +24,22 @@ const Gallery = () => {
             return newImatges
         })
     }
-    
-    useEffect(() => {
-        console.log("useEffect " + page)
-        try {
-            const limit = window.innerWidth <= 500 ? 9 : 16;
-            getImages(page, limit)
-                .then(images => {
-                    if (images.length === 0) return false;
-                    setImages(prevImages => addNewImages(prevImages, images))
-                    return true;
-                })
-          } catch(e) {
-            console.log(e)
-          }
-    }, [page])
 
     useEffect(() => {
+        console.log('useEffect []')
+
         let options = {
             root: null, // When null is the viewport
             rootMargin: '0px',
-            threshold: [0.25, 0.5, 0.75, 1]
+            threshold: [0.5, 1]
         }
     
         let observer = new IntersectionObserver((entries, observer) => {
             const [ { isIntersecting } ] = entries
-
+            entries.forEach(entry => {
+                console.log('intersection observer', entry)
+            })
+            
             if (isIntersecting) setPage(page => ++page)
         }, options);
 
@@ -54,6 +47,23 @@ const Gallery = () => {
 
         return() => observer.unobserve(document.querySelector('div.boundary'))
     }, [])
+    
+    useEffect(() => {
+        console.log("useEffect [page] " + page)
+        try {
+            if (page === 0) return;
+            const limit = window.innerWidth <= 500 ? 8 : 15;
+            toggleLockBodyScroll();
+            getImages(page, limit)
+                .then(images => {
+                    if (images.length === 0) return false;
+                    setImages(prevImages => addNewImages(prevImages, images))
+                    return true;
+            }).then(() => toggleLockBodyScroll())
+          } catch(e) {
+            console.log(e)
+          }
+    }, [page])
 
     return (
         <section className="gallery">
@@ -61,6 +71,7 @@ const Gallery = () => {
                 (
                     <button className="gallery__wrapper" key={id} onClick={() => handleClick(idx)}>
                         <img className="gallery__image" src={src} alt={alt}/>
+                        <span className="gallery__text" >{id}</span>
                     </button>
                 ))}
             <div className="gallery__placeholder boundary"></div>
