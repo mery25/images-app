@@ -7,9 +7,9 @@ const Gallery = () => {
 
     console.log("Gallery")
     const [ images, setImages] = useState([]);
-    const [ page, setPage] = useState(0);
+    const [ start, setStart] = useState(-1);
     const toggleLockBodyScroll = useLockBodyScroll('visible');
-
+    const limit = window.innerWidth <= 500 ? 8 : 15;
     const addNewImages = (prevImages, newImages) => {
         const lastPrevImage = prevImages[prevImages.length - 1];
         const lastNewImage = newImages[newImages.length - 1];
@@ -40,7 +40,9 @@ const Gallery = () => {
                 console.log('intersection observer', entry)
             })
             
-            if (isIntersecting) setPage(page => ++page)
+            if (isIntersecting) {
+                setStart(start => start + limit)
+            }
         }, options);
 
         observer.observe(document.querySelector('div.boundary'));
@@ -49,12 +51,11 @@ const Gallery = () => {
     }, [])
     
     useEffect(() => {
-        console.log("useEffect [page] " + page)
+        console.log("useEffect [start] " + start)
         try {
-            if (page === 0) return;
-            const limit = window.innerWidth <= 500 ? 8 : 15;
+            if (start === -1) return;
             toggleLockBodyScroll();
-            getImages(page, limit)
+            getImages(start, limit)
                 .then(images => {
                     if (images.length === 0) return false;
                     setImages(prevImages => addNewImages(prevImages, images))
@@ -63,7 +64,7 @@ const Gallery = () => {
           } catch(e) {
             console.log(e)
           }
-    }, [page])
+    }, [start])
 
     return (
         <section className="gallery">
