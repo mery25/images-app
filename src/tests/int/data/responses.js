@@ -75,7 +75,7 @@ export const SUCCESFUL_RESPONSE_WITH_DEFAULT_PARAMS = {
   statusText: "",
 };
 
-export const SUCCESFUL_RESPONSE_WITH_PAGE_PARAM = {
+export const SUCCESFUL_RESPONSE_WITH_START_PARAM = {
   data: [
     {
       albumId: 1,

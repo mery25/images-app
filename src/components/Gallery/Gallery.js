@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { getImages, getImagesFrom } from "../../api/api";
+import { getImages } from "../../api/api";
 import { useLockBodyScroll } from "../../hooks/useLockBodyScroll";
 import useCalculatedGridSize from "../../hooks/useCalculatedGridSize";
 import "./Gallery.sass";
@@ -23,6 +23,7 @@ const Gallery = () => {
       }
     }, [numCols, numRows, sizeItem, images])
 
+
   const addNewImages = (prevImages, newImages) => {
     const lastPrevImage = prevImages[prevImages.length - 1];
     const lastNewImage = newImages[newImages.length - 1];
@@ -35,7 +36,7 @@ const Gallery = () => {
     console.log("loadImages", start, limit);
     try {
       toggleLockBodyScroll();
-      getImagesFrom(start, limit).then((images) => {
+      getImages(start, limit).then((images) => {
         if (images.length === 0) return false;
         setImages((prevImages) => addNewImages(prevImages, images));
         return true;
@@ -73,7 +74,6 @@ const Gallery = () => {
         console.log("fillscreen")
         fillScreen();
     }
-    
   }, [ numCols, numRows, sizeItem]);
 
   useEffect(() => {
